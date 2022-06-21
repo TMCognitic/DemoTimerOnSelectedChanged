@@ -1,0 +1,28 @@
+﻿using System;
+using System.Windows.Input;
+
+namespace DemoTimerOnSelectedChanged.ViewModels
+{
+    public class Command : ICommand
+    {
+        public event EventHandler? CanExecuteChanged;
+        private readonly Action _execute;
+
+        public Command(Action execute)
+        {
+            ArgumentNullException.ThrowIfNull(execute);
+            _execute = execute;
+        }
+
+
+        public bool CanExecute(object? parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object? parameter)
+        {
+            _execute();
+        }
+    }
+}
