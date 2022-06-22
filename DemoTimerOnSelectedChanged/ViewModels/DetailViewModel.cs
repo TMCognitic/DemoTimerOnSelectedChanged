@@ -68,9 +68,9 @@ namespace DemoTimerOnSelectedChanged.ViewModels
 
                 _cleaningTask = Task.Run(() =>
                 {
-                    int delay = 10000;
+                    int delay = 3000;
                     Console.WriteLine($"Cleaning process started on {Text}, deletion in {delay / 1000} secs...");
-                    Task.Delay(delay).Wait(Task.Factory.CancellationToken);
+                    Task.Delay(delay, cancellationToken).Wait();
 
                     if (!cancellationToken.IsCancellationRequested)
                     {                        
