@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoTimerOnSelectedChanged.Tools.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,48 +10,9 @@ using System.Windows.Input;
 
 namespace DemoTimerOnSelectedChanged.ViewModels
 {
-    public class MainViewModels : INotifyPropertyChanged
+    public class MainViewModels : CollectionViewModelBase<DetailViewModel>
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private ObservableCollection<DetailViewModel>? _items;
-        private DetailViewModel? _selectedItem;
         private readonly ICommand _clearSelectionCommand;
-
-
-        public ObservableCollection<DetailViewModel> Items { 
-            get
-            {
-                return _items ??= LoadItems();
-            } 
-        }
-
-
-        public DetailViewModel? SelectedItem
-        {
-            get
-            {
-                return _selectedItem;
-            }
-
-            set
-            {
-                if(_selectedItem != value)
-                {
-                    if (value is not null)
-                    {
-                        value.CancelClear();
-                    }
-
-                    if (_selectedItem is not null)
-                    {
-                        _selectedItem.Clear();
-                    }
-
-                    _selectedItem = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
-                }
-            }
-        }
 
         public ICommand ClearSelectionCommand
         {
@@ -64,15 +26,16 @@ namespace DemoTimerOnSelectedChanged.ViewModels
         {
             _clearSelectionCommand = new Command(() => SelectedItem = null);
         }
-        private ObservableCollection<DetailViewModel> LoadItems()
+        protected override ObservableCollection<DetailViewModel> LoadItems()
         {
+            Console.WriteLine("LoadItems Call of MainViewModel");
             return new ObservableCollection<DetailViewModel>()
             {
-                new DetailViewModel("Detail 1 "),
-                new DetailViewModel("Detail 2 "),
-                new DetailViewModel("Detail 3 "),
-                new DetailViewModel("Detail 4 "),
-                new DetailViewModel("Detail 5 ")
+                new DetailViewModel("Detail 1"),
+                new DetailViewModel("Detail 2"),
+                new DetailViewModel("Detail 3"),
+                new DetailViewModel("Detail 4"),
+                new DetailViewModel("Detail 5")
             };
         }
     }

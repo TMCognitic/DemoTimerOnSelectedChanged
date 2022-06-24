@@ -18,7 +18,7 @@
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <ItemsControl ItemsSource="{Binding Items}" />
+                    <ItemsControl ItemsSource="{Binding Items}" DisplayMemberPath="Value" />
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
