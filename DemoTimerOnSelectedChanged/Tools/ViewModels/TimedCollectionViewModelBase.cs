@@ -52,7 +52,7 @@ namespace DemoTimerOnSelectedChanged.Tools.ViewModels
                             Application.Current.Dispatcher.Invoke(() => Items.Clear());
                             Reset();
                             Console.WriteLine($"View model is clean for {GetHashCode()}...");
-                            Console.WriteLine($"Item count {Items.Count}...");
+                            Console.WriteLine($"Items count : {Items.Count}...");
                         }
                     }
                 });

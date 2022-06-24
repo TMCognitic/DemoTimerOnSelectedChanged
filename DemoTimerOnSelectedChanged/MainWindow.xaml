@@ -12,7 +12,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Button Content="Clear Selection" Command="{Binding ClearSelectionCommand}" />
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Text" Binding="{Binding Text}" Width="*" />
             </DataGrid.Columns>
